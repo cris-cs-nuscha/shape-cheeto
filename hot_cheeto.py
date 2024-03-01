@@ -16,26 +16,31 @@ def print_error(msg):
 # shape handler functions
 def draw_square(t, data):
     '''Draws a square on given turtle object and data dictionary'''
-    print(data)
+    print("pendown:", t.isdown())
     t.setpos(int(data['pos_x']), int(data['pos_y']))
-    t.forward(150)
+    t.color(data['color']) 
+    t.down()
+    side = float(data["sizel"])
+    t.forward(side)
     t.left(90)
-    t.forward(150)
+    t.forward(side)
     t.left(90)
-    t.forward(150)
+    t.forward(side)
     t.left(90)
-    t.forward(150)
+    t.forward(side)
     t.left(90)
-    #180-90=90
+    t.up()
+
 
 def draw_circle(t, data):
     '''Draws a circle on given turtle object and data dictionary'''
     print(data)
     print("draw_circle coming soon")
 
+# dictionary of shapes and callback functions 
 handlers = {
 'square': draw_square,
-'circle': draw_circle 
+'circle': draw_circle
 }
 
 def get_handler(shape_type):
@@ -48,10 +53,10 @@ def get_handler(shape_type):
         return None
 
 
-# turtle object
+# create turtle object
 win = turtle.Screen()
 t = turtle.Turtle()
-t.down()
+t.up()
 
 # read shapes data file and call handler function for each shapes dictionary 
 for data in read_csv():
@@ -59,8 +64,5 @@ for data in read_csv():
     if draw_f:
         draw_f(t, data) 
 
-
-# # draw shapes to turtle object
-# draw_square(t)
-
-# t.screen.mainloop()
+# keep window open until user closes it
+turtle.exitonclick()
