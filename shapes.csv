@@ -2,3 +2,4 @@ type, color, pos_x, pos_y, sizel, size2
 square, #ff0000, 0, 0,  150
 circle,  yellow,19, 19, 200
 square, purple,28, 28, 180
+square, green,-280, -280, 180
