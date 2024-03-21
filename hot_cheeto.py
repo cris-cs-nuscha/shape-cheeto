@@ -7,8 +7,29 @@ sizes, and positions. the instrunctions for each shapes will be read from a file
 
 import turtle
 import sys
+
+# turtle.pensize(3)
+# turtle.circle(100)
+
+# turtle.pensize(5)
+
+# for i in range(5):
+#     turtle.forward(300)
+#     turtle.left(144)
+
+# turtle.hideturtle()
+
+# turtle.pensize(3)
+
+# for i in range(3):
+#     turtle.left(120)
+#     turtle.forward(200)
+
+# turtle.exitonclick()
+
 from read_shapes import read_csv
-    
+
+
 def print_error(msg):
     """prints to stderr"""
     print(msg, file=sys.stderr)
@@ -35,7 +56,24 @@ def draw_square(t, data):
 def draw_circle(t, data):
     '''Draws a circle on given turtle object and data dictionary'''
     print(data)
-    print("draw_circle coming soon")
+    t.pencolor(data['color']) 
+    radius = float(data["sizel"])
+    t.circle(radius)
+    '''Draws a square on given turtle object and data dictionary'''
+    print("pendown:", t.isdown())
+    t.setpos(int(data['pos_x']), int(data['pos_y']))
+    t.color(data['color']) 
+    t.down()
+    side = float(data["sizel"])
+    t.forward(side)
+    t.left(100)
+    t.forward(side)
+    t.left(100)
+    t.forward(side)
+    t.left(100)
+    t.forward(side)
+    t.left(100)
+    t.up()
 
 # dictionary of shapes and callback functions 
 handlers = {
@@ -53,7 +91,7 @@ def get_handler(shape_type):
         return None
 
 
-# create turtle object
+# create turtle object and Screen
 win = turtle.Screen()
 t = turtle.Turtle()
 t.up()
