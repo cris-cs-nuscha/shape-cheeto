@@ -37,7 +37,8 @@ def print_error(msg):
 # shape handler functions
 def draw_rectangle(t, data):
     '''Draws a square on given turtle object and data dictionary'''
-    print("pendown:", t.isdown())
+    if t.isdown():
+        t.up()
     t.setpos(int(data['pos_x']), int(data['pos_y']))
     t.color(data['color'])
     t.fillcolor(data['fill']) 
@@ -45,14 +46,10 @@ def draw_rectangle(t, data):
     t.begin_fill()
     side1 = float(data["size1"])
     side2 = float(data["size2"])
-    t.forward(side1)
-    t.left(90)
-    t.forward(side2)
-    t.left(90)
-    t.forward(side1)
-    t.left(90)
-    t.forward(side2)
-    t.left(90)
+    # iterate the four sides of a rectangle
+    for s in (side1, side2, side1, side2):
+        t.forward(s)
+        t.left(90)
     t.end_fill()
     t.up()
 
@@ -63,26 +60,25 @@ def draw_square(t, data):
 
 def draw_triangle(t, data):
     '''Draws a square on given turtle object and data dictionary'''
-    print("pendown:", t.isdown())
+    if t.isdown():
+        t.up()
     t.setpos(int(data['pos_x']), int(data['pos_y']))
     t.color(data['color'])
     t.fillcolor(data['fill']) 
     t.down()
     t.begin_fill()
     side = float(data["size1"])
-    t.forward(side)
-    t.left(120)
-    t.forward(side)
-    t.left(120)
-    t.forward(side)
-    t.left(120)
+    for _ in range(3):
+        t.forward(side)
+        t.left(120)
     t.end_fill()
     t.up()
 
 
 def draw_circle(t, data):
     '''Draws a circle on given turtle object and data dictionary'''
-    print(data)
+    if t.isdown():
+        t.up()
     t.setpos(int(data['pos_x']), int(data['pos_y']))
     t.pencolor(data['color'])
     t.fillcolor(data['fill'])
@@ -95,14 +91,6 @@ def draw_circle(t, data):
     print("pendown:", t.isdown())
     t.end_fill()
     t.up()
-
-
-'''
-#set up the area for turtle to ues 
-area = Screen()
-area.setuo(500,500)
-area.bgcolor('white')
-'''
 
 # dictionary of shapes and callback functions 
 handlers = {
@@ -124,6 +112,7 @@ def get_handler(shape_type):
 
 # create turtle object and Screen
 t = turtle.Turtle()
+t.speed(9)
 win = turtle.Screen()
 
 #win.bgpic("grid.png")
@@ -135,7 +124,9 @@ for data in read_csv():
     if draw_f:
         print("calling handler: " + data['type'])
         print(data)
+        # call shape function (including student developed procedure "draw_rectangle")
         draw_f(t, data) 
 
+t.hideturtle()
 # keep window open until user closes it
 turtle.exitonclick()
