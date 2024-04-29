@@ -1,4 +1,22 @@
-type, color, pos_x, pos_y, sizel, size2, fill
-square, #ff0000, 0, 0,  150, 150, green
-circle,  yellow, 47, 3, 80,80
-triangle, blue, 0, 150, 150, 150, green
+type, color, pos_x, pos_y, size1, size2, fill
+square, #17202A, 130, -290,  150, 150, #5D6D7E
+rectangle, #17202A, 220, -130, 50, 120, #5D6D7E
+triangle, #17202A, 130, -140, 150, 150, #5D6D7E
+rectangle, #17202A, 140,-280, 40, 80, #1D7D83
+rectangle, #17202A, 220,-220, 50, 60, #1D7D83
+rectangle, #17202A, -330, -310, 50, 230, brown
+circle, #1D8348, -300, -120, 70, 100, #33D7FF
+rectangle, #17202A, -160, -290, 40, 230, brown
+circle, #1D8348, -140, -120, 90, 150, #33D7FF
+circle, #33D7FF, 190, 180, 70, 90, #33D7FF
+circle, #33D7FF, 100, 130, 50, 90, blue
+circle, #33D7FF, 130, 150, 50, 90, blue
+circle, #33D7FF, 50, 140, 50, 90, blue
+circle, #33D7FF, 40, 200, 70, 100, blue
+circle, #33D7FF, 120, 190, 60, 90, blue
+circle, #33D7FF, 160, 130, 50, 100, #33D7FF
+circle,  #F4D03F, -300, 150, 80, 80, yellow
+
+
+
+
